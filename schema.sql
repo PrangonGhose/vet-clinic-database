@@ -1,3 +1,10 @@
+-- create database
+CREATE DATABSE vet_clinic;
+
+-- enter database
+\c vet_clinic
+
+-- create table
 CREATE TABLE animals(
 	id INT GENERATED ALWAYS AS IDENTITY,
 	name VARCHAR(250),
