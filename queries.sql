@@ -1,3 +1,5 @@
+-- Day 1
+
 -- query 1
 SELECT * FROM animals WHERE name LIKE '%mon';
 
@@ -21,6 +23,8 @@ SELECT * FROM animals WHERE name != 'Gabumon';
 
 -- query 8
 SELECT * FROM animals WHERE weight_kg >= 10.4 and weight_kg <= 17.3;
+
+-- Day 2
 
 -- Begin transaction
 BEGIN WORK;
@@ -93,3 +97,39 @@ SELECT species, MIN(weight_kg), MAX(weight_kg) FROM animals GROUP BY species;
 SELECT species, AVG(escape_attempts) FROM animals 
 WHERE date_of_birth > '1990-01-01' and date_of_birth < '2000-12-31' 
 GROUP BY species;
+
+-- Day 3
+
+-- Answer to Question 1
+SELECT * FROM animals
+JOIN owners ON animals.owner_id = owners.id
+WHERE full_name = 'Melody Pond';
+
+-- Answer to Question 2
+SELECT * FROM animals
+JOIN species ON animals.species_id = species.id
+WHERE species.name = 'Pokemon';
+
+-- Answer to Question 3
+SELECT owners.full_name, animals.name FROM owners
+LEFT JOIN animals ON animals.owner_id = owners.id;
+
+-- Answer to Question 4
+SELECT species.name, COUNT(*) FROM species
+LEFT JOIN animals ON animals.species_id = species.id GROUP BY species.id;
+
+-- Answer to Question 5
+SELECT animals.* FROM animals
+LEFT JOIN owners ON owners.id = animals.owner_id
+LEFT JOIN species ON species.id = animals.species_id
+WHERE owners.full_name = 'Jennifer Orwell' AND species.name = 'Digimon';
+
+-- Answer to Question 6
+SELECT animals.* FROM animals
+LEFT JOIN owners ON owners.id = animals.owner_id
+WHERE owners.full_name = 'Dean Winchester' AND animals.escape_attempts = 0;
+
+-- Answer to Question 7
+SELECT owners.full_name, COUNT(*) FROM owners
+LEFT JOIN animals ON animals.owner_id = owners.id GROUP BY owners.id
+ORDER BY COUNT(animals.*) DESC;
