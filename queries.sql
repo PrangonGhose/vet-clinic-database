@@ -127,7 +127,6 @@ WHERE owners.full_name = 'Jennifer Orwell' AND species.name = 'Digimon';
 -- Answer to Question 6
 SELECT animals.* FROM animals
 LEFT JOIN owners ON owners.id = animals.owner_id
-LEFT JOIN species ON species.id = animals.species_id
 WHERE owners.full_name = 'Dean Winchester' AND animals.escape_attempts = 0;
 
 -- Answer to Question 7
